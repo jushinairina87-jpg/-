@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSport News | Главная</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0c12;
+            color: #f0f4f8;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            background-color: #11161f;
+            padding: 1rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #2a2f3a;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00e5ff, #a96eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            font-weight: 500;
+        }
+
+        nav a {
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            color: #00e5ff;
+        }
+
+        .search-icon {
+            color: #aaa;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .search-icon:hover {
+            color: #00e5ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(145deg, #131a26, #0b0f18);
+            padding: 3rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            border-bottom: 1px solid #2a2f3a;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #b0c4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            color: #b0b8c5;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00e5ff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #8e9aaf;
+        }
+
+        .hero-image {
+            flex-shrink: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80') center/cover no-repeat;
+            border-radius: 24px;
+            border: 2px solid #2e3a4a;
+            box-shadow: 0 20px 30px -10px rgba(0, 229, 255, 0.2);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title span {
+            color: #00e5ff;
+            font-size: 1rem;
+            background: rgba(0, 229, 255, 0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #00e5ff40;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .news-card {
+            background: #131926;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #2a2f3a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px #00e5ff30;
+            border-color: #00e5ff60;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 2px solid #2e3a4a;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            color: #8e9aaf;
+        }
+
+        .card-game {
+            background: #1f2a3a;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            color: #00e5ff;
+            font-weight: 500;
+            font-size: 0.75rem;
+            border: 1px solid #00e5ff40;
+        }
+
+        .card-date {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card-date i {
+            font-size: 0.7rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            color: #a0a8b8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #2a2f3a;
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .read-more {
+            color: #00e5ff;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap 0.2s;
+        }
+
+        .read-more:hover {
+            gap: 0.6rem;
+        }
+
+        .card-comments {
+            color: #8e9aaf;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Hot Topics */
+        .hot-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .topic-tag {
+            background: #1f2632;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #ccc;
+            border: 1px solid #3a4050;
+            transition: all 0.2s;
+        }
+
+        .topic-tag:hover {
+            background: #00e5ff20;
+            border-color: #00e5ff;
+            color: #00e5ff;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d121b;
+            padding: 3rem 5% 1.5rem;
+            border-top: 1px solid #2a2f3a;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00e5ff, #a96eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: #aaa;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #00e5ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #6a7285;
+            font-size: 0.9rem;
+            border-top: 1px solid #222834;
+            padding-top: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .hero-image {
+                max-width: 100%;
+                height: 180px;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .card-img {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Cyber<span style="color:white; background: transparent; -webkit-text-fill-color: white;">Sport</span>News</div>
+        <nav>
+            <a href="#">Новости</a>
+            <a href="#">Турниры</a>
+            <a href="#">Команды</a>
+            <a href="#">Медиа</a>
+            <a href="#">Форум</a>
+        </nav>
+        <div class="search-icon"><i class="fas fa-search"></i></div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Все новости киберспорта в одном месте</h1>
+            <p>Свежие результаты, эксклюзивные интервью, аналитика и расписание турниров по CS:GO, Dota 2, League of Legends и Valorant.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value">24/7</span>
+                    <span class="stat-label">новости</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">15+</span>
+                    <span class="stat-label">игр</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">300</span>
+                    <span class="stat-label">турниров</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image" aria-label="Киберспортивная арена"></div>
+    </section>
+
+    <main class="container">
+        <!-- Горячие темы -->
+        <div class="hot-topics">
+            <span class="topic-tag"><i class="fas fa-fire" style="color:#00e5ff;"></i> CS:GO</span>
+            <span class="topic-tag">Dota 2</span>
+            <span class="topic-tag">League of Legends</span>
+            <span class="topic-tag">Valorant</span>
+            <span class="topic-tag">StarCraft II</span>
+            <span class="topic-tag">Overwatch 2</span>
+            <span class="topic-tag">PUBG</span>
+        </div>
+
+        <!-- Свежие новости -->
+        <div class="section-title">
+            Свежие новости
+            <span>последние 24 часа</span>
+        </div>
+
+        <div class="news-grid">
+            <!-- Карточка 1 -->
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1616523718778-1f5711c8f3b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="CS:GO матч" class="card-img">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-game">CS:GO</span>
+                        <span class="card-date"><i class="far fa-clock"></i> 2 часа назад</span>
+                    </div>
+                    <h3 class="card-title">NAVI выходит в плей-офф IEM Katowice после убедительной победы</h3>
+                    <p class="card-excerpt">Вчерашний матч против Faze Clan закончился со счётом 2:0. S1mple признан MVP встречи.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-more">Читать <i class="fas fa-arrow-right"></i></a>
+                        <span class="card-comments"><i class="far fa-comment"></i> 24</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Карточка 2 -->
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1586325194227-7625ed951cd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dota 2" class="card-img">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-game">Dota 2</span>
+                        <span class="card-date"><i class="far fa-clock"></i> 5 часов назад</span>
+                    </div>
+                    <h3 class="card-title">Team Spirit уступила BetBoom Team в финале верхней сетки</h3>
+                    <p class="card-excerpt">Напряжённая серия из трёх карт завершилась победой BetBoom — 2:1. Команды встретятся снова в гранд-финале.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-more">Читать <i class="fas fa-arrow-right"></i></a>
+                        <span class="card-comments"><i class="far fa-comment"></i> 42</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Карточка 3 -->
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1603302576836-3c4a7b1d9d6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="League of Legends" class="card-img">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-game">LoL</span>
+                        <span class="card-date"><i class="far fa-clock"></i> 8 часов назад</span>
+                    </div>
+                    <h3 class="card-title">T1 анонсирует новый состав: Faker остаётся, присоединяются новички</h3>
+                    <p class="card-excerpt">Организация представила обновлённый ростер перед стартом LCK Spring Split.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-more">Читать <i class="fas fa-arrow-right"></i></a>
+                        <span class="card-comments"><i class="far fa-comment"></i> 18</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Карточка 4 -->
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Valorant" class="card-img">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-game">Valorant</span>
+                        <span class="card-date"><i class="far fa-clock"></i> 12 часов назад</span>
+                    </div>
+                    <h3 class="card-title">FNATIC выигрывает VCT LOCK//IN, одолев LOUD в пяти картах</h3>
+                    <p class="card-excerpt">Европейский коллектив забирает титул и призовые $100,000 в напряжённом финале.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-more">Читать <i class="fas fa-arrow-right"></i></a>
+                        <span class="card-comments"><i class="far fa-comment"></i> 31</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Карточка 5 -->
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1614680376408-81e91b4db4d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="PUBG" class="card-img">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-game">PUBG</span>
+                        <span class="card-date"><i class="far fa-clock"></i> 1 день назад</span>
+                    </div>
+                    <h3 class="card-title">Результаты PUBG Global Championship 2024: победитель — Soniqs</h3>
+                    <p class="card-excerpt">Американская команда в третий раз становится чемпионом мира, заработав $2 млн.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-more">Читать <i class="fas fa-arrow-right"></i></a>
+                        <span class="card-comments"><i class="far fa-comment"></i> 15</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Карточка 6 -->
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="StarCraft II" class="card-img">
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-game">StarCraft II</span>
+                        <span class="card-date"><i class="far fa-clock"></i> 2 дня назад</span>
+                    </div>
+                    <h3 class="card-title">Serral стал чемпионом IEM Katowice 2024, обыграв Cure</h3>
+                    <p class="card-excerpt">Финский зerg подтверждает свой статус лучшего игрока мира, финал завершился 4:2.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-more">Читать <i class="fas fa-arrow-right"></i></a>
+                        <span class="card-comments"><i class="far fa-comment"></i> 12</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Баннер предстоящего турнира (необязательно) -->
+        <div style="background: linear-gradient(145deg, #1e2740, #131a26); border-radius: 30px; padding: 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin: 3rem 0;">
+            <div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">EPIC League Season 4</h3>
+                <p style="color: #b0b8c5;">Старт уже завтра! Следите за расписанием и результатами в реальном времени.</p>
+            </div>
+            <a href="#" style="background: #00e5ff; color: #0a0c12; padding: 0.8rem 2rem; border-radius: 40px; font-weight: 600; transition: 0.2s;">Подробнее <i class="fas fa-calendar-alt"></i></a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">CyberSportNews</div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 CyberSport News. Все права защищены. <br> Использование материалов разрешено только с указанием ссылки на источник.
+        </div>
+    </footer>
+</body>
+</html>
